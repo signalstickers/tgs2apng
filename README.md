@@ -13,4 +13,4 @@ You will need [rlottie], [libpng], [png++], and [apngasm] installed. Then just r
 
 ## License
 
-Undecided as of yet.
+BlueOak Model License 1.0.0.

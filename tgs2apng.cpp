@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: BlueOak-1.0.0
+
 #include <iostream>
 #include <sstream>
 #include <string>
