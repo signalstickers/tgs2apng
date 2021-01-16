@@ -27,8 +27,8 @@ bool tgs2apng::render(
 	auto framebuf_rgba = std::vector<apngasm::rgba>(width * height);
 	auto apng = new apngasm::APNGAsm();
 
-	std::printf("Frame count: %d\n", frames);
-	std::printf("Frame delay: %d/%d\n", frame_delay.first, frame_delay.second);
+	std::fprintf(stderr, "Frame count: %d\n", frames);
+	std::fprintf(stderr, "Frame delay: %d/%d\n", frame_delay.first, frame_delay.second);
 
 	for (size_t frame = 0; frame < frames; frame++) {
 		rlottie::Surface surface(reinterpret_cast<uint32_t*>(framebuf_bgra.data()), width, height, width * 4);
@@ -40,11 +40,11 @@ bool tgs2apng::render(
 				framebuf_rgba[y * height + x] = apngasm::rgba {px.r, px.g, px.b, px.a};
 			}
 		}
-		apng->addFrame(
+		apng->addFrame(apngasm::APNGFrame(
 			framebuf_rgba.data(),
 			width, height,
 			frame_delay.first, frame_delay.second
-		);
+		));
 	}
 	bool rv = apng->assemble(output_path);
 	delete apng;

@@ -11,9 +11,6 @@
 
 #include <rlottie.h>
 #include <apngasm.h>
-// we only need to *write* APNGs
-#undef APNG_READ_SUPPORTED
-#undef APNG_SPECS_SUPPORTED
 
 namespace tgs2apng {
 	// Given a lottie animation, render a buffer of APNG data.
