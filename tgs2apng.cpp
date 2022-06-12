@@ -86,13 +86,13 @@ std::pair<int64_t, int64_t> tgs2apng::internal::as_integer_ratio(double d) {
 
 
 int main(int argc, char** argv) {
+	if (argc != 2) {
+		std::fprintf(stderr, "Usage: %s <output path>.png < anim.json\n", argv[0]);
+		return EXIT_FAILURE;
+	}
 	// https://stackoverflow.com/a/18816712
 	std::ostringstream anim_json_buf;
 	anim_json_buf << std::cin.rdbuf();
 	std::string anim_json = anim_json_buf.str();
-	if (argc != 2) {
-		std::fprintf(stderr, "Usage: %s <output path> < anim.json\n", argv[0]);
-		return EXIT_FAILURE;
-	}
 	return tgs2apng::render(anim_json, argv[1], 256, 256) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
